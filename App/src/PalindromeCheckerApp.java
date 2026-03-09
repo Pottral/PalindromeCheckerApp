@@ -3,35 +3,33 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
+            // Define the input string
+            String input = "madam";
 
+            // Call recursive function
+            boolean isPalindrome = check(input, 0, input.length() - 1);
 
-                // Define the input string
-                String input = "refer";
-
-                // Create a Deque to store characters
-                Deque<Character> deque = new ArrayDeque<>();
-
-                // Add each character to the deque
-                for (char c : input.toCharArray()) {
-                    deque.add(c);
-                }
-
-                // Flag to track palindrome result
-                boolean isPalindrome = true;
-
-                // Continue comparison while more than one element exists
-                while (deque.size() > 1) {
-
-                    if (deque.removeFirst() != deque.removeLast()) {
-                        isPalindrome = false;
-                        break;
-                    }
-                }
-
-                // Display result
-                System.out.println("Input : " + input);
-                System.out.println("Is Palindrome? : " + isPalindrome);
-            }
+            // Print result
+            System.out.println("Input : " + input);
+            System.out.println("Is Palindrome? : " + isPalindrome);
         }
+
+        // Recursive method to check palindrome
+        private static boolean check(String s, int start, int end) {
+
+            // Base condition
+            if (start >= end) {
+                return true;
+            }
+
+            // If characters do not match
+            if (s.charAt(start) != s.charAt(end)) {
+                return false;
+            }
+
+            // Recursive call
+            return check(s, start + 1, end - 1);
+        }
+    }
