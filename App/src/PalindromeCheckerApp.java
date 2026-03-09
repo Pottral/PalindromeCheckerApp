@@ -5,34 +5,33 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // Define the input string
-        String input = "civic";
 
-        // Create a Queue to store characters (FIFO)
-        Queue<Character> queue = new LinkedList<>();
 
-        // Create a Stack to store characters (LIFO)
-        Stack<Character> stack = new Stack<>();
+                // Define the input string
+                String input = "refer";
 
-        // Insert characters into both queue and stack
-        for(char c : input.toCharArray()) {
-            queue.add(c);
-            stack.push(c);
-        }
+                // Create a Deque to store characters
+                Deque<Character> deque = new ArrayDeque<>();
 
-        // Assume palindrome initially
-        boolean isPalindrome = true;
+                // Add each character to the deque
+                for (char c : input.toCharArray()) {
+                    deque.add(c);
+                }
 
-        // Compare characters until queue becomes empty
-        while(!queue.isEmpty()) {
-            if(queue.remove() != stack.pop()) {
-                isPalindrome = false;
-                break;
+                // Flag to track palindrome result
+                boolean isPalindrome = true;
+
+                // Continue comparison while more than one element exists
+                while (deque.size() > 1) {
+
+                    if (deque.removeFirst() != deque.removeLast()) {
+                        isPalindrome = false;
+                        break;
+                    }
+                }
+
+                // Display result
+                System.out.println("Input : " + input);
+                System.out.println("Is Palindrome? : " + isPalindrome);
             }
         }
-
-        // Print result
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
-    }
-}
